@@ -1,0 +1,11 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h2>Search results</h2>
+<ul>
+    {% for name in names %}
+    <li><a href="/names/{{name}}">{{name}}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

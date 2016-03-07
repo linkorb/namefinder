@@ -1,0 +1,18 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h2>Search</h2>
+<form action="/search" method="post">
+    <h3>Generators</h3>
+    {% for generator in generators %}
+    <input type="checkbox" name="{{generator}}" /> {{generator}}<br />
+    {% endfor %}
+
+    <h3>Checkers</h3>
+    {% for checker in checkers %}
+    <input type="checkbox" name="{{checker}}" /> {{checker}}<br />
+    {% endfor %}
+
+    <button class="btn btn-success" type="submit">Search</button>
+</form>
+{% endblock %}

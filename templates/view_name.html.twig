@@ -1,0 +1,13 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h2>Name: {{ name }}</h2>
+<ul>
+{% for checker, status in statuses %}
+    <li>{{ checker}}: {{status}}</li>
+{% endfor %}
+</ul>
+<pre>
+    {{ whois}}
+</pre>
+{% endblock %}

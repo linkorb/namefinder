@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema>
+    <table name="name">
+        <column name="id" type="integer" unsigned="true" autoincrement="true"/>
+        <column name="name" type="string" length="64" />
+        <column name="generator" type="string" length="64" />
+        <column name="created_at" type="datetime" notnull="false" />
+
+        <index name="primary" primary="true" columns="id" />
+    </table>
+
+    <table name="name_check">
+        <column name="id" type="integer" unsigned="true" autoincrement="true"/>
+        <column name="name" type="string" length="64" />
+        <column name="checker_key" type="string" length="64" />
+        <column name="created_at" type="datetime" notnull="false" />
+        <column name="value" type="integer" />
+        <column name="status" type="string" length="32" />
+
+        <index name="primary" primary="true" columns="id" />
+    </table>
+
+</schema>

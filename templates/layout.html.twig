@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    {% block meta %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="" />
+    {% endblock %}
+
+    <title>NameFinder</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    
+
+    <style>
+        body, html {
+            margin: 0;
+        }
+        body {
+            margin-top: 48px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>NameFinder</h1>
+        <hr />
+        {% block content %}
+            
+        {% endblock content %}
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    
+                </div>
+                <div class="col-md-6">
+                    &copy; 2016 LinkORB Engineering
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
