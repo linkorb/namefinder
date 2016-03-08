@@ -8,6 +8,7 @@
         <column name="created_at" type="datetime" notnull="false" />
 
         <index name="primary" primary="true" columns="id" />
+        <index name="unique_name" unique="true" doc="unique name" columns="name" />
     </table>
 
     <table name="name_check">
@@ -17,8 +18,9 @@
         <column name="created_at" type="datetime" notnull="false" />
         <column name="value" type="integer" />
         <column name="status" type="string" length="32" />
-
+        
         <index name="primary" primary="true" columns="id" />
+        <index name="unique_name_checker_key" unique="true" doc="unique name vs checker_key" columns="name, checker_key" />
     </table>
 
 </schema>
