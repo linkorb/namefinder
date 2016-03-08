@@ -24,12 +24,52 @@ class PdoNameRepository extends PdoBaseRepository
         return $status;
     }
     
+    public function getByRating($rating)
+    {
+        $sql = sprintf(
+            "SELECT name FROM name WHERE rating = :rating;"
+        );
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute(['rating' => $rating]);
+
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $names = [];
+        foreach ($rows as $row) {
+            $names[] = $row['name'];
+        }
+        return $names;
+    }
+    
+    public function setRatingByName($name, $rating)
+    {
+        $sql = sprintf(
+            "UPDATE name SET rating=:rating WHERE name = :name;"
+        );
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute(['rating'=>$rating, 'name' => $name]);
+        return true;
+    }
+    
+    public function getRatingByName($name)
+    {
+        $sql = sprintf(
+            "SELECT rating FROM name WHERE name = :name;"
+        );
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute(['name' => $name]);
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $rows[0]['rating'];
+    }
+    
     public function search($generators, $checkers, $limit = 4)
     {
         $matches = [];
         $sql = sprintf(
             "SELECT name FROM name WHERE generator IN ('" . implode("','", $generators) . "')
-            ORDER BY RAND() LIMIT $limit;"
+            ORDER BY RAND() LIMIT 1000;"
         );
         $statement = $this->pdo->prepare($sql);
         $statement->execute();
@@ -54,7 +94,9 @@ class PdoNameRepository extends PdoBaseRepository
                 }
             }
             if ($match) {
-                $matches[] = $name;
+                if (count($matches)<$limit) {
+                    $matches[] = $name;
+                }
             }
         }
         return $matches;

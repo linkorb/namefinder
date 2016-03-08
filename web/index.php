@@ -22,4 +22,12 @@ $app->get('/names/{name}', function (Request $request, $name) use ($app, $contro
     return $controller->viewNameController($app, $request, $name);
 });
 
+$app->get('/names/{name}/rate/{rating}', function (Request $request, $name, $rating) use ($app, $controller) {
+    return $controller->rateNameController($app, $request, $name, $rating);
+});
+
+$app->get('/rating/{rating}', function (Request $request, $rating) use ($app, $controller) {
+    return $controller->ratingController($app, $request, $rating);
+});
+
 $app->run();

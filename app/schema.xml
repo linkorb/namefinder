@@ -3,6 +3,7 @@
     <table name="name">
         <column name="id" type="integer" unsigned="true" autoincrement="true"/>
         <column name="name" type="string" length="64" />
+        <column name="rating" type="string" length="32" />
         <column name="generator" type="string" length="64" />
         <column name="created_at" type="datetime" notnull="false" />
 

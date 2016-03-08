@@ -41,7 +41,7 @@ class AppController
                 $c[] = $checker;
             }
         }
-        $names = $app->nameRepository->search($g, $c);
+        $names = $app->nameRepository->search($g, $c, 20);
     
         $data = ['names'=>$names];
         return $app->renderResponse('search.html.twig', $data);
@@ -56,11 +56,29 @@ class AppController
         $whois = new Whois();
         $whois->deepWhois = false;
         
+        $data['rating'] = $app->nameRepository->getRatingByName($name);
         $data['statuses'] = $app->nameRepository->getStatusByName($name);
 
         
         $data['whois'] = implode("\n", $whois->lookup($name . '.com', false)['rawdata']);
         
         return $app->renderResponse('view_name.html.twig', $data);
+    }
+
+    public function rateNameController($app, $request, $name, $rating)
+    {
+        $app->nameRepository->setRatingByName($name, $rating);
+        return $app->redirect('/names/' . $name);
+    }
+    
+    public function ratingController($app, $request, $rating)
+    {
+        $data = [
+            'rating' => $rating
+        ];
+
+        $data['names'] = $app->nameRepository->getByRating($rating);
+
+        return $app->renderResponse('rating.html.twig', $data);
     }
 }
