@@ -8,3 +8,4 @@ tmp/
 ### Composer ###
 vendor/
 composer.lock
+config.yml
