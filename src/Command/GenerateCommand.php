@@ -38,6 +38,10 @@ class GenerateCommand extends BaseCommand
         $this->checkers[] = $checker;
         $checker = new ResolveChecker('nl');
         $this->checkers[] = $checker;
+        $checker = new ResolveChecker('cn');
+        $this->checkers[] = $checker;
+        $checker = new ResolveChecker('net');
+        $this->checkers[] = $checker;
 
         /*
         $checker = new WhoisChecker('com');
